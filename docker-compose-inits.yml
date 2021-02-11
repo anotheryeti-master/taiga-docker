@@ -4,13 +4,13 @@ x-environment:
   &default-back-environment
   POSTGRES_DB: taiga
   POSTGRES_USER: taiga
-  POSTGRES_PASSWORD: taiga
+  POSTGRES_PASSWORD: AJNkD8nSqt
   POSTGRES_HOST: taiga-db
-  TAIGA_SECRET_KEY: "taiga-back-secret-key"
+  TAIGA_SECRET_KEY: "ouw2iuMyXb"
   # these rabbitmq settings should be the same as
   # in taiga-rabbitmq and taiga-events services
   RABBITMQ_USER: taiga
-  RABBITMQ_PASS: taiga
+  RABBITMQ_PASS: bunnytime
   CELERY_ENABLED: "False"
 
 x-volumes:

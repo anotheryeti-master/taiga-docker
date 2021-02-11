@@ -5,21 +5,21 @@ x-environment:
   # Database settings
   POSTGRES_DB: taiga
   POSTGRES_USER: taiga
-  POSTGRES_PASSWORD: taiga
+  POSTGRES_PASSWORD: AJNkD8nSqt
   POSTGRES_HOST: taiga-db
   # Taiga settings
-  TAIGA_SECRET_KEY: "taiga-back-secret-key"
-  TAIGA_SITES_DOMAIN: "localhost:9000"
+  TAIGA_SECRET_KEY: "ouw2iuMyXb"
+  TAIGA_SITES_DOMAIN: "asapferg.work:9000"
   TAIGA_SITES_SCHEME: "http"
-  # Email settings. Uncomment following lines and configure your SMTP server
-  # EMAIL_BACKEND: "django.core.mail.backends.smtp.EmailBackend"
-  # DEFAULT_FROM_EMAIL: "no-reply@example.com"
-  # EMAIL_USE_TLS: "False"
-  # EMAIL_USE_SSL: "False"
-  # EMAIL_HOST: "smtp.host.example.com"
-  # EMAIL_PORT: 587
-  # EMAIL_HOST_USER: "user"
-  # EMAIL_HOST_PASSWORD: "password"
+  #Email settings. Uncomment following lines and configure your SMTP server
+  EMAIL_BACKEND: "django.core.mail.backends.smtp.EmailBackend"
+  DEFAULT_FROM_EMAIL: "no-reply@theotherhub.com"
+  EMAIL_USE_TLS: "False"
+  EMAIL_USE_SSL: "true"
+  EMAIL_HOST: "theotherhub.com"
+  EMAIL_PORT: 25
+  EMAIL_HOST_USER: "yetijensen"
+  EMAIL_HOST_PASSWORD: "0011Cat89!"
   # Registration
   PUBLIC_REGISTER_ENABLED: "False"
   # Telemetry settings
@@ -27,12 +27,13 @@ x-environment:
   # Rabbitmq settings
   # should be the same as in taiga-async-rabbitmq and taiga-events-rabbitmq
   RABBITMQ_USER: taiga
-  RABBITMQ_PASS: taiga
+  RABBITMQ_PASS: bunnytime
   # Github settings
   # Get these in your profile https://github.com/settings/apps
   # or in your organization profile https://github.com/organizations/{ORGANIZATION-SLUG}/settings/applications
-  GITHUB_API_CLIENT_ID: "github-api-client-id"
-  GITHUB_API_CLIENT_SECRET: "github-api-client-secret"
+  GITHUB_API_CLIENT_ID: "Taiga-AsapFerg"
+  GITHUB_API_CLIENT_SECRET: "d94074db8e204a1a9fc18e335960ad58c4e27982"
+  GITHUB_URL:"https://github.com/anotheryeti-master/taiga-docker"
   # Gitlab settings
   # Get these in your profile https://{YOUR-GITLAB}/profile/applications
   # or in your organization profile https://{YOUR-GITLAB}/admin/applications
@@ -65,7 +66,7 @@ services:
     environment:
       POSTGRES_DB: taiga
       POSTGRES_USER: taiga
-      POSTGRES_PASSWORD: taiga
+      POSTGRES_PASSWORD: AJNkD8nSqt
     volumes:
       - taiga-db-data:/var/lib/postgresql/data
     networks:
@@ -99,7 +100,7 @@ services:
     environment:
       RABBITMQ_ERLANG_COOKIE: secret-erlang-cookie
       RABBITMQ_DEFAULT_USER: taiga
-      RABBITMQ_DEFAULT_PASS: taiga
+      RABBITMQ_DEFAULT_PASS: bunnytime
       RABBITMQ_DEFAULT_VHOST: taiga
     networks:
       - taiga
@@ -107,18 +108,18 @@ services:
   taiga-front:
     image: taigaio/taiga-front:latest
     environment:
-      TAIGA_URL: "http://localhost:9000"
-      TAIGA_WEBSOCKETS_URL: "ws://localhost:9000"
+      TAIGA_URL: "http://asapferg.work:9000"
+      TAIGA_WEBSOCKETS_URL: "ws://asapferg.work:9000"
       PUBLIC_REGISTER_ENABLED: "false"
       # Get these in your profile https://github.com/settings/apps
       # or in your organization profile https://github.com/organizations/{ORGANIZATION-SLUG}/settings/applications
-      GITHUB_CLIENT_ID: "github-client-id"
+      GITHUB_CLIENT_ID: "d94074db8e204a1a9fc18e335960ad58c4e27982"
       # Get these in your profile https://{YOUR-GITLAB}/profile/applications
       # or in your organization profile https://{YOUR-GITLAB}/admin/applications
       GITLAB_CLIENT_ID: "gitlab-client-id"
       GITLAB_URL: "gitlab-url"
       # IMPORTERS
-      ENABLE_GITHUB_IMPORTER: "false"
+      ENABLE_GITHUB_IMPORTER: "true"
       ENABLE_JIRA_IMPORTER: "false"
       ENABLE_TRELLO_IMPORTER: "false"
     networks:
@@ -130,8 +131,8 @@ services:
     image: taigaio/taiga-events:latest
     environment:
       RABBITMQ_USER: taiga
-      RABBITMQ_PASS: taiga
-      TAIGA_SECRET_KEY: "taiga-back-secret-key"
+      RABBITMQ_PASS: bunnytime
+      TAIGA_SECRET_KEY: "d94074db8e204a1a9fc18e335960ad58c4e27982"
     networks:
       - taiga
     depends_on:
@@ -142,7 +143,7 @@ services:
     environment:
       RABBITMQ_ERLANG_COOKIE: secret-erlang-cookie
       RABBITMQ_DEFAULT_USER: taiga
-      RABBITMQ_DEFAULT_PASS: taiga
+      RABBITMQ_DEFAULT_PASS: bunnytime
       RABBITMQ_DEFAULT_VHOST: taiga
     networks:
       - taiga
@@ -151,7 +152,7 @@ services:
     image: taigaio/taiga-protected:latest
     environment:
       MAX_AGE: 360
-      SECRET_KEY: "taiga-back-secret-key"
+      SECRET_KEY: "d94074db8e204a1a9fc18e335960ad58c4e27982"
     networks:
       - taiga
 
