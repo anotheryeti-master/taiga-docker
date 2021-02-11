@@ -9,8 +9,8 @@ x-environment:
   POSTGRES_HOST: taiga-db
   # Taiga settings
   TAIGA_SECRET_KEY: "ouw2iuMyXb"
-  TAIGA_SITES_DOMAIN: "asapferg.work:9000"
-  TAIGA_SITES_SCHEME: "http"
+  TAIGA_SITES_DOMAIN: "asapferg.work"
+  TAIGA_SITES_SCHEME: "https"
   #Email settings. Uncomment following lines and configure your SMTP server
   EMAIL_BACKEND: "django.core.mail.backends.smtp.EmailBackend"
   DEFAULT_FROM_EMAIL: "no-reply@theotherhub.com"
@@ -41,9 +41,9 @@ x-environment:
   GITLAB_API_CLIENT_SECRET: "gitlab-api-client-secret"
   GITLAB_URL: "gitlab-url"
   # IMPORTERS
-  ENABLE_GITHUB_IMPORTER: "False"
-  GITHUB_IMPORTER_CLIENT_ID: "client-id-from-github"
-  GITHUB_IMPORTER_CLIENT_SECRET: "client-secret-from-github"
+  ENABLE_GITHUB_IMPORTER: "True"
+  GITHUB_IMPORTER_CLIENT_ID: "Taiga-AsapFerg"
+  GITHUB_IMPORTER_CLIENT_SECRET: "d94074db8e204a1a9fc18e335960ad58c4e27982"
   ENABLE_JIRA_IMPORTER: "False"
   JIRA_IMPORTER_CONSUMER_KEY: "consumer-key-from-jira"
   JIRA_IMPORTER_CERT: "cert-from-jira"
@@ -108,8 +108,8 @@ services:
   taiga-front:
     image: taigaio/taiga-front:latest
     environment:
-      TAIGA_URL: "http://asapferg.work:9000"
-      TAIGA_WEBSOCKETS_URL: "ws://asapferg.work:9000"
+      TAIGA_URL: "https://asapferg.work"
+      TAIGA_WEBSOCKETS_URL: "ws://asapferg.work"
       PUBLIC_REGISTER_ENABLED: "false"
       # Get these in your profile https://github.com/settings/apps
       # or in your organization profile https://github.com/organizations/{ORGANIZATION-SLUG}/settings/applications
@@ -159,7 +159,8 @@ services:
   taiga-gateway:
     image: nginx:1.19-alpine
     ports:
-      - "9000:80"
+      - "9000:81"
+      - "80:80"
     volumes:
       - ./taiga-gateway/taiga.conf:/etc/nginx/conf.d/default.conf
       - taiga-static-data:/taiga/static
